@@ -1,12 +1,11 @@
 # 🎓 Student Performance Dashboard
 
-[![Live Demo](https://img.shields.io/badge/🚀%20Live%20Demo-Open-green?style=for-the-badge)](https://student-performance-dashboard-kn3aqxvfy3dgmarj9lx4yz.streamlit.app)
 
 A dynamic Student Performance Analytics Dashboard built using Python, Pandas, Streamlit, and Matplotlib.
 
 ## 🚀 Live Demo
 
-https://student-performance-dashboard-kn3aqxvfy3dgmarj9lx4yz.streamlit.app
+[![Live Demo](https://img.shields.io/badge/🚀%20Live%20Demo-Open-green?style=for-the-badge)](https://student-performance-dashboard-kn3aqxvfy3dgmarj9lx4yz.streamlit.app)
 
 ## 📸 Screenshots
 
