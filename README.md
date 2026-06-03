@@ -1,9 +1,9 @@
 # 🎓 Student Performance Dashboard
 
-![Python](https://img.shields.io/badge/Python-3.10-blue?logo=python)
-![Pandas](https://img.shields.io/badge/Pandas-2.x-150458?logo=pandas)
-![Streamlit](https://img.shields.io/badge/Streamlit-1.x-red?logo=streamlit)
-![Matplotlib](https://img.shields.io/badge/Matplotlib-3.x-orange)
+![Python](https://img.shields.io/badge/Python-blue?logo=python)
+![Pandas](https://img.shields.io/badge/Pandas-150458?logo=pandas)
+![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?logo=streamlit&logoColor=white)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-11557c)
 
 [![Live Demo](https://img.shields.io/badge/🚀%20Live%20Demo-Open-green?style=for-the-badge)](https://student-performance-dashboard-kn3aqxvfy3dgmarj9lx4yz.streamlit.app)
 
