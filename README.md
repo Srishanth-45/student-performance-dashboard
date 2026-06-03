@@ -6,6 +6,19 @@ A dynamic Student Performance Analytics Dashboard built using Python, Pandas, St
 
 https://student-performance-dashboard-kn3aqxvfy3dgmarj9lx4yz.streamlit.app
 
+## 📸 Screenshots
+
+### Dashboard Overview
+
+![Dashboard Overview](screenshots/dashboard-overview.png)
+
+### Risk Analysis
+
+![Risk Analysis](screenshots/risk-analysis.png)
+
+### Charts and Analytics
+
+![Charts](screenshots/charts.png)
 ## 📌 Project Overview
 
 This dashboard helps analyze student academic performance through interactive visualizations, ranking, risk analysis, and personalized recommendations.
