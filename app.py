@@ -1,7 +1,12 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
+import re
 
+def normalize_column(column):
+    return re.sub(r"[^a-z0-9]","",column.lower())
+    
+excluded_terms = ["studentid","studentnumber","studentno","rollno","rollnumber","id","attendance","age","gender","class","section","grade","year","department","semester","branch","term","batch","total","rank","average","averagemarks","riskscore","lowestscore"]
 st.set_page_config(page_title="Student Dashboard", page_icon="📊", layout="wide")
 # ------------------------Page Title --------------------------------------
 st.title("Student Performance Dashboard")
@@ -18,7 +23,8 @@ if uploaded_file is not None:
         if df.empty:
             st.error("The uploaded CSV file is empty.")
             st.stop()
-        if any(".1" in col or col.endswith(tuple([f".{i}" for i in range(1,10)])) for col in df.columns):
+        normalized_columns = [normalize_column(col) for col in df.columns]
+        if len(normalized_columns) != len(set(normalized_columns)):
             st.error("Duplicate column names found in the CSV file. Please ensure all column names are unique.")
             st.stop()
     except Exception as e:
@@ -30,26 +36,43 @@ if uploaded_file is not None:
     if df[numeric_cols].isnull().values.any():
         st.warning("Some marks were missing and have been filled with 0.")
         df[numeric_cols] = df[numeric_cols].fillna(0)
-
+        
     # -----------------Check Name Column-----------------------
-    if "Name" not in df.columns:
-        st.error("Dataset must contain a 'Name' column.")
+    name_column = None
+    for column in df.columns:
+        if normalize_column(column) in ["name", "studentname"]:
+            name_column = column
+            break
+    if name_column is None:
+        st.error("Dataset must contain a student name column.")
         st.stop()
+        
+    df["Name"] = df[name_column].fillna("Unknown")
+    if name_column != "Name":
+        df = df.drop(columns=[name_column])
 
-    df["Name"] = df["Name"].fillna("Unknown")
+    attendance_column = None
+    for column in df.columns:
+        normalized = normalize_column(column)
+        if "attendance" in normalized:
+            attendance_column = column
+            break
 
     # -----------------Detect Numeric Columns-----------------------
-    excluded_columns = ["Attendance", "StudentID"]
     numeric_columns = [
-        col for col in df.select_dtypes(include='number').columns
-        if col not in excluded_columns
+        col for col in df.select_dtypes(include="number").columns
+        if normalize_column(col) not in excluded_terms
     ]
 
     # ----------------- Check Numeric Columns-----------------------
     if len(numeric_columns) == 0:
         st.error("No numeric subject columns found.")
         st.stop()
+    for column in numeric_columns:
+        df[column] = pd.to_numeric(df[column], errors="coerce").fillna(0)
 
+    st.info(f"Detected subject columns: {', '.join(numeric_columns)}")
+    
     # ------------------Subject Selection---------------------------
     st.sidebar.header("Dashboard Controls")
 
@@ -66,9 +89,8 @@ if uploaded_file is not None:
 
     # -----------------Show Dataset---------------------------------
     st.subheader("Student Data")
-    columns_order = ["Name"] + subject_columns + ["Total", "Rank"]
-    st.dataframe(df,use_container_width=True)
-
+    display_columns = ["Name"] + subject_columns + ["Total", "Rank"]
+    st.dataframe(df[display_columns],use_container_width=True)
     # ----------------Search Student--------------------------------
     search_name = st.sidebar.text_input("Search Student")
 
@@ -100,12 +122,12 @@ if uploaded_file is not None:
     with col2:
         st.metric("Average Marks",f"{average_marks:.2f}")
     with col3:
-        if "Attendance" in df.columns:
+        if attendance_column is not None:
             try:
-                att_val = float(str(student["Attendance"]).replace("%", "").strip())
+                att_val = float(str(student[attendance_column]).replace("%", "").strip())
                 st.metric("Attendance", f"{att_val:.0f}%")
             except (ValueError, TypeError):
-                st.metric("Attendance", str(student["Attendance"]))
+                st.metric("Attendance", str(student[attendance_column]))
         else:
             st.metric("Attendance", "N/A")
     with col4:
@@ -231,7 +253,8 @@ if uploaded_file is not None:
 
     #---------------- Download Report--------------------------------
     st.subheader("Download Report")
-    csv = df.to_csv(index=False)
+    report_df = df.drop(columns=["Display Name"], errors="ignore")
+    csv = report_df.to_csv(index=False)
     st.download_button(
         label="Download Processed CSV",
         data=csv,
