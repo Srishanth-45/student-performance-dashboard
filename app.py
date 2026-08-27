@@ -109,10 +109,12 @@ if uploaded_file is not None:
         search_text = search_name.strip()
 
         # Search both the original Name and Display Name
+        search_text = search_text.replace(" (", "(")
+
         search_results = df[
-            df["Name"].astype(str).str.contains(search_text,case=False,na=False,regex=False)
+            df["Name"].astype(str).str.contains( search_text, case=False, na=False, regex=False)
             |
-            df["Display Name"].astype(str).str.contains(search_text,case=False,na=False,regex=False)
+            df["Display Name"].astype(str).str.replace( " (", "(", regex=False).str.contains(search_text, case=False, na=False, regex=False)
         ]
 
         if not search_results.empty:
