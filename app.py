@@ -91,23 +91,53 @@ if uploaded_file is not None:
     st.subheader("Student Data")
     display_columns = ["Name"] + subject_columns + ["Total", "Rank"]
     st.dataframe(df[display_columns],use_container_width=True)
-    # ----------------Search Student--------------------------------
+    # ----------------Student Display Names------------------------------
+    df["Display Name"] = (
+        df["Name"].astype(str)+ " ("+ (df.groupby("Name").cumcount() + 1).astype(str) + ")"
+    )
+
+    # -----------------Keep normal names for students who appear only once---------------
+    df.loc[
+        ~df["Name"].duplicated(keep=False),
+        "Display Name"
+    ] = df["Name"]
+
+    # ----------------Search Student------------------------------
     search_name = st.sidebar.text_input("Search Student")
 
-    if search_name:
-        search_results = df[df["Name"].str.contains(search_name,case=False,na=False)]
+    if search_name.strip():
+        search_text = search_name.strip()
+
+        # Search both the original Name and Display Name
+        search_results = df[
+            df["Name"].astype(str).str.contains(search_text,case=False,na=False,regex=False)
+            |
+            df["Display Name"].astype(str).str.contains(search_text,case=False,na=False,regex=False)
+        ]
+
         if not search_results.empty:
             st.subheader("Search Results")
-            st.dataframe(search_results,use_container_width=True)
+            search_display_columns = ( ["Display Name"]+ subject_columns+ ["Total", "Rank"])
+
+            st.dataframe(
+                search_results[search_display_columns],
+                use_container_width=True)
         else:
             st.warning("No student found.")
 
-    # ----------------Student Selector------------------------------
-    st.subheader("Student Details")
-    df["Display Name"] = df["Name"] + " (" + (df.groupby("Name").cumcount() + 1).astype(str) + ")"
-    df.loc[~df["Name"].duplicated(keep=False), "Display Name"] = df["Name"]
+# ----------------Student Selector------------------------------
+st.subheader("Student Details")
 
-    student_name_display = st.sidebar.selectbox("Select Student",df["Display Name"])
+student_name_display = st.sidebar.selectbox(
+    "Select Student",
+    df["Display Name"]
+)
+
+selected_student = df[
+    df["Display Name"] == student_name_display
+]
+
+student = selected_student.iloc[0]
 
     selected_student = df[df["Display Name"] == student_name_display]
     student = selected_student.iloc[0]
