@@ -7,11 +7,17 @@
 
 [![Live Demo](https://img.shields.io/badge/🚀%20Live%20Demo-Open-green?style=for-the-badge)](https://student-performance-dashboard-kn3aqxvfy3dgmarj9lx4yz.streamlit.app)
 
-A dynamic Student Performance Analytics Dashboard built using Python, Pandas, Streamlit, and Matplotlib.
+A dynamic and interactive **Student Performance Analytics Dashboard** built using Python, Pandas, Streamlit, and Matplotlib.
+
+The dashboard allows users to upload student datasets and analyze academic performance through rankings, filtering, risk analysis, recommendations, and interactive visualizations.
+
+---
 
 ## 🚀 Live Demo
 
-https://student-performance-dashboard-kn3aqxvfy3dgmarj9lx4yz.streamlit.app
+[Open the Student Performance Dashboard](https://student-performance-dashboard-kn3aqxvfy3dgmarj9lx4yz.streamlit.app)
+
+---
 
 ## 📸 Screenshots
 
@@ -26,24 +32,47 @@ https://student-performance-dashboard-kn3aqxvfy3dgmarj9lx4yz.streamlit.app
 ### Charts and Analytics
 
 ![Charts](screenshots/charts.png)
+
+---
+
 ## 📌 Project Overview
 
-This dashboard helps analyze student academic performance through interactive visualizations, ranking, risk analysis, and personalized recommendations.
+The Student Performance Dashboard helps analyze academic performance using an uploaded CSV dataset.
 
-Users can upload a CSV file containing student records and instantly view insights about student performance.
+It automatically processes the dataset and provides useful insights such as:
+
+- Student totals and averages
+- Class rankings
+- Subject-wise performance
+- Top performers
+- Student risk levels
+- Personalized performance recommendations
+- Interactive filtering
+- Data visualizations
+
+The dashboard is designed to work with different student datasets and automatically detect numeric subject columns.
+
+---
 
 ## ✨ Features
 
-- Upload CSV datasets
-- Student search functionality
-- Student ranking system
-- Top performer identification
-- Risk analysis and recommendations
-- Subject-wise average calculation
-- Interactive filters
-- Bar chart visualization
-- Pie chart visualization
-- Download processed reports
+- 📂 Upload CSV datasets
+- 🔎 Search students by name
+- 👨‍🎓 Select individual students
+- 🔢 Handle duplicate student names
+- 🏆 Student ranking system
+- 🥇 Top performer identification
+- ⚠️ Student risk analysis
+- 💡 Performance recommendations
+- 📊 Subject-wise average calculation
+- 🎚️ Minimum total marks filter
+- 📈 Bar chart visualization
+- 🥧 Pie chart visualization
+- 📋 Interactive student tables
+- 💾 Download processed reports
+- 🔄 Dynamic subject detection
+
+---
 
 ## 🛠 Technologies Used
 
@@ -55,77 +84,80 @@ Users can upload a CSV file containing student records and instantly view insigh
 - GitHub
 - Streamlit Community Cloud
 
+---
+
 ## 📊 Dashboard Modules
 
 ### Student Data
-Displays all student records with calculated totals and rankings.
 
-### Student Search
-Search students by name and view filtered results.
+Displays student records with their subject marks, calculated totals, and rankings.
 
-### Student Details
-Shows:
+### 🔎 Student Search
+
+Search students by name and view matching search results.
+
+Search and student selection are independent functionalities.
+
+### 👨‍🎓 Student Details
+
+Displays details for the selected student:
+
 - Total Marks
 - Average Marks
 - Attendance
 - Class Rank
 
-### Performance Recommendation
-Provides recommendations based on the student's weakest subject.
+### 💡 Performance Recommendation
 
-### Top Performer
-Identifies students with the highest total marks.
+Identifies the student's weakest subject and provides a recommendation for improvement.
 
-### Student Risk Analysis
+### 🏆 Top Performer
+
+Identifies the student with the highest total marks.
+
+### ⚠️ Student Risk Analysis
+
 Classifies students into:
+
 - Safe
 - Needs Attention
 - High Risk
 
-### Visualizations
-- Subject Average Comparison (Bar Chart)
-- Average Distribution (Pie Chart)
+The analysis also identifies areas where students may need improvement.
 
-### Report Export
-Download processed student data as CSV.
+### 📈 Visualizations
 
-## 📂 Dataset Format
+The dashboard provides:
 
-Example:
+- Subject Average Comparison — Bar Chart
+- Average Distribution — Pie Chart
 
-| Name | Math | Science | English | Attendance |
-|--------|--------|--------|--------|--------|
-| Rahul | 85 | 90 | 88 | 95 |
-| Kiran | 92 | 91 | 95 | 98 |
+The visualizations update according to the selected subject columns.
 
-## 🖥️ Installation
+### 🎚️ Student Filtering
 
-Clone the repository:
+Students can be filtered using the **Minimum Total Marks** slider.
 
-```bash
-git clone https://github.com/Srishanth-45/student-performance-dashboard.git
-cd student-performance-dashboard
-```
+### 💾 Report Export
 
-Install dependencies:
+Processed student data can be downloaded as a CSV file.
 
-```bash
-pip install -r requirements.txt
-```
+---
 
-Run the application:
+## 📂 Dataset Requirements
 
-```bash
-streamlit run app.py
-```
+The dashboard accepts CSV files containing student records.
 
-## 👨‍💻 Author
+### ⚠️ Required `Name` Column
 
-Srishanth Samala
+The CSV file **must contain a column named `Name`**.
 
-GitHub:
-https://github.com/Srishanth-45
+The `Name` column is used to identify students throughout the dashboard.
 
-## 📄 License
+For example:
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+```csv
+Name,Maths,Science,English,Attendance
+Rahul,85,90,88,95
+Kiran,92,91,95,98
+Arjun,75,82,85,90
