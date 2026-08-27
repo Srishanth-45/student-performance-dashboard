@@ -161,3 +161,16 @@ Name,Maths,Science,English,Attendance
 Rahul,85,90,88,95
 Kiran,92,91,95,98
 Arjun,75,82,85,90
+
+## 👨‍💻 Author
+
+Srishanth Samala
+
+GitHub:
+https://github.com/Srishanth-45
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
