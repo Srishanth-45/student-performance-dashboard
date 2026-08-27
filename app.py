@@ -139,7 +139,7 @@ selected_student = df[
 
 student = selected_student.iloc[0]
 
-    selected_student = df[df["Display Name"] == student_name_display]
+selected_student = df[df["Display Name"] == student_name_display]
     student = selected_student.iloc[0]
 
     # --------------Student Metrics----------------------------------
