@@ -125,23 +125,19 @@ if uploaded_file is not None:
         else:
             st.warning("No student found.")
 
-# ----------------Student Selector------------------------------
-st.subheader("Student Details")
+    # ----------------Student Selector------------------------------
+    st.subheader("Student Details")
 
-student_name_display = st.sidebar.selectbox(
-    "Select Student",
-    df["Display Name"]
-)
+    student_name_display = st.sidebar.selectbox(
+        "Select Student",
+        df["Display Name"]
+    )
 
-selected_student = df[
-    df["Display Name"] == student_name_display
-]
-
-student = selected_student.iloc[0]
-
-selected_student = df[df["Display Name"] == student_name_display]
-student = selected_student.iloc[0]
-
+    selected_student = df[
+        df["Display Name"] == student_name_display
+    ]
+    student = selected_student.iloc[0]
+    
     # --------------Student Metrics----------------------------------
     total_marks = student[subject_columns].sum()
     average_marks = student[subject_columns].mean()
