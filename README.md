@@ -9,9 +9,15 @@
 
 A dynamic and interactive Student Performance Analytics Dashboard built using Python, Pandas, Streamlit, and Matplotlib.
 
+The dashboard allows users to upload student datasets and analyze academic performance through rankings, filtering, risk analysis, recommendations, and interactive visualizations.
+
+---
+
 ## 🚀 Live Demo
 
 https://student-performance-dashboard-kn3aqxvfy3dgmarj9lx4yz.streamlit.app/
+
+---
 
 ## 📸 Screenshots
 
@@ -27,28 +33,35 @@ https://student-performance-dashboard-kn3aqxvfy3dgmarj9lx4yz.streamlit.app/
 
 ![Charts](screenshots/charts.png)
 
+---
+
 ## 📌 Project Overview
 
 This dashboard helps analyze student academic performance through interactive visualizations, ranking, risk analysis, filtering, and personalized recommendations.
 
 Users can upload a CSV file containing student records and instantly view insights about student performance.
 
+---
+
 ## ✨ Features
 
-- Upload CSV datasets
-- Automatic numeric subject detection
-- Student search functionality
-- Duplicate student name handling
-- Student ranking system
-- Top performer identification
-- Student risk analysis
-- Performance recommendations
-- Subject-wise average calculation
-- Minimum total marks filtering
-- Interactive student tables
-- Bar chart visualization
-- Pie chart visualization
-- Download processed reports
+- 📂 Upload CSV datasets
+- 🔎 Search students by name
+- 👨‍🎓 Select individual students
+- 👥 Handle duplicate student names
+- 🔢 Automatically detect numeric subject columns
+- 🏆 Student ranking system
+- 🥇 Top performer identification
+- ⚠️ Student risk analysis
+- 💡 Performance recommendations
+- 📊 Subject-wise average calculation
+- 🎚️ Minimum total marks filtering
+- 📋 Interactive student tables
+- 📈 Bar chart visualization
+- 🥧 Pie chart visualization
+- 💾 Download processed reports
+
+---
 
 ## 🛠 Technologies Used
 
@@ -59,6 +72,8 @@ Users can upload a CSV file containing student records and instantly view insigh
 - Git
 - GitHub
 - Streamlit Community Cloud
+
+---
 
 ## 📊 Dashboard Modules
 
@@ -81,7 +96,7 @@ Shows:
 
 ### Performance Recommendation
 
-Provides recommendations based on the student's weakest subject.
+Identifies the student's weakest subject and provides a recommendation for improvement.
 
 ### Top Performer
 
@@ -95,18 +110,26 @@ Classifies students into:
 - Needs Attention
 - High Risk
 
+The analysis also identifies subjects that may require improvement.
+
 ### Student Filtering
 
 Allows users to filter students using the minimum total marks slider.
 
 ### Visualizations
 
-- Subject Average Comparison (Bar Chart)
-- Average Distribution (Pie Chart)
+The dashboard provides:
+
+- Subject Average Comparison — Bar Chart
+- Average Distribution — Pie Chart
+
+The charts update according to the selected subject columns.
 
 ### Report Export
 
-Download processed student data as a CSV file.
+Processed student data can be downloaded as a CSV file.
+
+---
 
 ## 📂 Dataset Requirements
 
@@ -114,7 +137,7 @@ The uploaded CSV file **must contain a `Name` column**.
 
 The `Name` column is required to identify and select students.
 
-Example:
+### Example
 
 ```csv
 Name,Maths,Science,English,Attendance
@@ -125,11 +148,13 @@ Arjun,75,82,85,90
 
 If the CSV does not contain a `Name` column, the dashboard will display an error and will not process the dataset.
 
+---
+
 ## 🔢 Subject Column Handling
 
-The dashboard automatically detects subject columns that contain numeric marks.
+The dashboard automatically detects subject columns containing numeric marks.
 
-For example:
+### Example
 
 ```csv
 Name,Maths,Maths 2,Science,English
@@ -140,7 +165,9 @@ Rahul,45,55,60,50
 
 The numeric subject columns are used for performance calculations.
 
-If a subject column contains non-numeric values, that column is removed from subject-based numerical analysis.
+### Non-Numeric Subject Columns
+
+If a subject column contains non-numeric values, that column is removed from numerical subject analysis.
 
 For example:
 
@@ -161,11 +188,15 @@ Here, `English` contains non-numeric values, so it is not used for:
 - Recommendations
 - Charts
 
+---
+
 ## 📝 Missing Marks
 
 If marks are missing from a numeric subject column, the missing values are filled with `0`.
 
-The dashboard also displays a notification informing the user that missing marks have been filled with zero.
+The dashboard displays a notification informing the user when missing marks have been filled with zero.
+
+---
 
 ## 👥 Duplicate Student Names
 
@@ -179,6 +210,8 @@ For example:
 - Rahul
 
 This allows each student to be selected and analyzed separately even when multiple students have the same name.
+
+---
 
 ## 🧮 Automatic Calculations
 
@@ -204,6 +237,8 @@ Students are ranked according to their total marks.
 
 The dashboard calculates the average marks for each selected subject.
 
+---
+
 ## 🔄 Dynamic Subject Selection
 
 Users can select the subject columns they want to analyze.
@@ -216,6 +251,8 @@ Changing the selected subjects dynamically updates the relevant:
 - Subject comparisons
 - Charts
 
+---
+
 ## 🎚️ Minimum Marks Filter
 
 The dashboard provides a minimum total marks slider.
@@ -223,6 +260,8 @@ The dashboard provides a minimum total marks slider.
 Students whose total marks are below the selected minimum value are filtered out.
 
 The slider can be moved across the available total-mark range, including minimum and maximum values.
+
+---
 
 ## 📊 Example Dashboard Workflow
 
@@ -250,6 +289,8 @@ Display Charts & Analytics
 Download Processed CSV
 ```
 
+---
+
 ## 📂 Project Structure
 
 ```text
@@ -268,43 +309,33 @@ student-performance-dashboard/
     └── charts.png
 ```
 
-## 🖥️ Installation
-
-Clone the repository:
-
-```bash
-git clone https://github.com/Srishanth-45/student-performance-dashboard.git
-cd student-performance-dashboard
-```
-
-Install dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
-Run the application:
-
-```bash
-streamlit run app.py
-```
+---
 
 ## 🌐 Deployment
 
 The application is deployed using Streamlit Community Cloud.
 
-Live application:
+### Live Application
 
 https://student-performance-dashboard-kn3aqxvfy3dgmarj9lx4yz.streamlit.app/
+
+---
 
 ## 👨‍💻 Author
 
 Srishanth Samala
 
-GitHub: https://github.com/Srishanth-45
+GitHub:
+https://github.com/Srishanth-45
 
 ---
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Copyright © 2026 Srishanth Samala.
+
+All rights reserved.
+
+This project is publicly available for viewing and demonstration purposes.
+
+Unauthorized copying, modification, redistribution, or commercial use is not permitted without permission from the author.
